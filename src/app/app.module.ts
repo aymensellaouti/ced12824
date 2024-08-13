@@ -27,6 +27,9 @@ import { LoggerService } from './services/logger.service';
 import { Logger2Service } from './services/logger2.service';
 import { SayHello } from './services/sayHello.service';
 import { WeekTodosComponent } from './todo/week-todos/week-todos.component';
+import { UUID_TOKEN } from './injection tokens/uuid.injection-token';
+
+import {v4 as uuidV4} from 'uuid'
 
 @NgModule({
   declarations: [
@@ -50,38 +53,38 @@ import { WeekTodosComponent } from './todo/week-todos/week-todos.component';
     RainbowDirective,
     DefaultImagePipe,
     CarreePipe,
-    WeekTodosComponent
+    WeekTodosComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule
-  ],
+  imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [
-  {
-    // provide: LOGGER_TOKEN,
-    provide:LoggerService,
-    // useFactory: loggerProviderFactory
-    useClass: LoggerService
-  },
-  // {
-  //   // provide: LOGGER_TOKEN,
-  //   provide:LoggerService,
-  //   // useFactory: loggerProviderFactory
-  //   useClass: Logger2Service
-  // },
-  {
-    provide: LOGGER_TOKEN,
-    useClass: LoggerService,
-    multi: true
-  },
-  {
-    provide: LOGGER_TOKEN,
-    useClass: Logger2Service,
-    multi: true
-  },
-  SayHello,
-],
-  bootstrap: [AppComponent]
+    {
+      // provide: LOGGER_TOKEN,
+      provide: LoggerService,
+      // useFactory: loggerProviderFactory
+      useClass: LoggerService,
+    },
+    // {
+    //   // provide: LOGGER_TOKEN,
+    //   provide:LoggerService,
+    //   // useFactory: loggerProviderFactory
+    //   useClass: Logger2Service
+    // },
+    {
+      provide: LOGGER_TOKEN,
+      useClass: LoggerService,
+      multi: true,
+    },
+    {
+      provide: LOGGER_TOKEN,
+      useClass: Logger2Service,
+      multi: true,
+    },
+    SayHello,
+    {
+      provide: UUID_TOKEN,
+      useValue: uuidV4,
+    },
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
