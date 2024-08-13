@@ -17,6 +17,7 @@ import { CvCardComponent } from './cv/cv-card/cv-card.component';
 import { CvItemComponent } from './cv/cv-item/cv-item.component';
 import { MiniWordComponent } from './directives/mini-word/mini-word.component';
 import { TodoComponent } from './todo/todo/todo.component';
+import { HighlightDirective } from './directives/highlight.directive';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { TodoComponent } from './todo/todo/todo.component';
     CvCardComponent,
     CvItemComponent,
     // Directives
-    MiniWordComponent
+    MiniWordComponent,
+    HighlightDirective
   ],
   imports: [
     BrowserModule,
