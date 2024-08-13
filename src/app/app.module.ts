@@ -18,6 +18,8 @@ import { CvItemComponent } from './cv/cv-item/cv-item.component';
 import { MiniWordComponent } from './directives/mini-word/mini-word.component';
 import { TodoComponent } from './todo/todo/todo.component';
 import { HighlightDirective } from './directives/highlight.directive';
+import { RainbowDirective } from './directives/rainbow.directive';
+import { DefaultImagePipe } from './cv/pipes/default-image.pipe';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,9 @@ import { HighlightDirective } from './directives/highlight.directive';
     CvItemComponent,
     // Directives
     MiniWordComponent,
-    HighlightDirective
+    HighlightDirective,
+    RainbowDirective,
+    DefaultImagePipe
   ],
   imports: [
     BrowserModule,

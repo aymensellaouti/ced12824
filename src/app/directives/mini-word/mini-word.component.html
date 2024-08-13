@@ -1,11 +1,11 @@
-<p appHighlight [in]="'blue'" [out]="'pink'" [ngStyle]="{
+<p appRainbow appHighlight [in]="'blue'" [out]="'pink'" [ngStyle]="{
   color,
   fontSize: size + 'px',
   fontFamily: font
 }">mini-word works!</p>
 
 <div class="row">
-  <div class="col"><input [(ngModel)]="color" type="color" class="form-control" /></div>
+  <div class="col"><input appRainbow [(ngModel)]="color" type="color" class="form-control" /></div>
   <div class="col"><input [(ngModel)]="size" type="number" class="form-control" /></div>
   <div class="col">
     <select [(ngModel)]="font" class="form-control">

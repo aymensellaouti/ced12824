@@ -15,7 +15,7 @@ export class CvComponent {
       'trainer',
       '123',
       42,
-      'rotating_card_profile2.png'
+      ''
     ),
     new Cv(
       2,
@@ -24,7 +24,7 @@ export class CvComponent {
       'Dev',
       '1234',
       20,
-      'rotating_card_profile.png'
+      '     '
     ),
   ];
   selectedCv: Cv | null = null;

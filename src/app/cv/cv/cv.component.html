@@ -3,6 +3,6 @@
     <app-cv-list (forwardCv)="onForwardCv($event)" [cvs]="cvs" />
   </div>
   <div class="col">
-    <app-cv-card [cv]="selectedCv" />
+    <app-cv-card *ngIf="selectedCv" [cv]="selectedCv" />
   </div>
 </div>
