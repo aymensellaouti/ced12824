@@ -13,4 +13,9 @@ export class CvItemComponent {
   onClick() {
     this.selectCv.emit(this.cv);;
   }
+  carre(element: number) {
+    const result = element * element;
+    console.log({result});
+    return result;
+  }
 }

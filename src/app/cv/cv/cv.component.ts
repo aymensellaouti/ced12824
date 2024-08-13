@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { Cv } from '../model/cv.model';
+import { LOGGER_TOKEN } from 'src/app/injection tokens/logger.injection-token';
+import { LoggerService } from 'src/app/services/logger.service';
+import { SayHello } from 'src/app/services/sayHello.service';
 
 @Component({
   selector: 'app-cv',
@@ -28,7 +31,15 @@ export class CvComponent {
     ),
   ];
   selectedCv: Cv | null = null;
-
+  constructor(
+    // @Inject(LOGGER_TOKEN)
+    // @Inject(LoggerService)
+    private loggerService: LoggerService,
+    private sayHello: SayHello
+  ) {
+    this.loggerService.logger('cv component');
+    this.sayHello.hello();
+  }
   onForwardCv(cv: Cv) {
     this.selectedCv = cv;
   }
