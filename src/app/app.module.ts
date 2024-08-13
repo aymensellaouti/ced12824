@@ -26,6 +26,7 @@ import { LOGGER_TOKEN } from './injection tokens/logger.injection-token';
 import { LoggerService } from './services/logger.service';
 import { Logger2Service } from './services/logger2.service';
 import { SayHello } from './services/sayHello.service';
+import { WeekTodosComponent } from './todo/week-todos/week-todos.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { SayHello } from './services/sayHello.service';
     HighlightDirective,
     RainbowDirective,
     DefaultImagePipe,
-    CarreePipe
+    CarreePipe,
+    WeekTodosComponent
   ],
   imports: [
     BrowserModule,
@@ -62,11 +64,21 @@ import { SayHello } from './services/sayHello.service';
     // useFactory: loggerProviderFactory
     useClass: LoggerService
   },
+  // {
+  //   // provide: LOGGER_TOKEN,
+  //   provide:LoggerService,
+  //   // useFactory: loggerProviderFactory
+  //   useClass: Logger2Service
+  // },
   {
-    // provide: LOGGER_TOKEN,
-    provide:LoggerService,
-    // useFactory: loggerProviderFactory
-    useClass: Logger2Service
+    provide: LOGGER_TOKEN,
+    useClass: LoggerService,
+    multi: true
+  },
+  {
+    provide: LOGGER_TOKEN,
+    useClass: Logger2Service,
+    multi: true
   },
   SayHello,
 ],
