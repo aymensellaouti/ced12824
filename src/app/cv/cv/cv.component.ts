@@ -27,4 +27,9 @@ export class CvComponent {
       'rotating_card_profile.png'
     ),
   ];
+  selectedCv: Cv | null = null;
+
+  onForwardCv(cv: Cv) {
+    this.selectedCv = cv;
+  }
 }
