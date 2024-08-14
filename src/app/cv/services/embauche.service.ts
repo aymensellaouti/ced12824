@@ -18,6 +18,11 @@ export class EmbaucheService {
    * @returns {boolean} return true si embauchée false sinon
    */
   embaucher(cv: Cv): boolean {
-    return true;
+    const index = this.#embauchees.indexOf(cv);
+    if(index < 0) {
+      this.#embauchees.push(cv);
+      return true;
+    }
+    return false;
   }
 }

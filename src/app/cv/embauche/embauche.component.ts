@@ -9,4 +9,6 @@ import { EmbaucheService } from '../services/embauche.service';
   styleUrls: ['./embauche.component.css'],
 })
 export class EmbaucheComponent {
+  embaucheService = inject(EmbaucheService);
+  embauchees = this.embaucheService.getEmbauchees();
 }

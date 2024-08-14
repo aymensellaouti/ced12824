@@ -1,7 +1,11 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
+
+import { ToastrModule } from 'ngx-toastr';
+
 import { AppComponent } from './app.component';
 import { FirstComponent } from './components/first/first.component';
 import { SecondComponent } from './components/second/second.component';
@@ -33,6 +37,7 @@ import {v4 as uuidV4} from 'uuid'
 import { DetailsCvComponent } from './cv/details-cv/details-cv.component';
 import { EmbaucheComponent } from './cv/embauche/embauche.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,6 +49,7 @@ import { EmbaucheComponent } from './cv/embauche/embauche.component';
     PereComponent,
     FilsComponent,
     TodoComponent,
+
     // Cvs
     CvComponent,
     CvListComponent,
@@ -51,6 +57,7 @@ import { EmbaucheComponent } from './cv/embauche/embauche.component';
     CvItemComponent,
     DetailsCvComponent,
     EmbaucheComponent,
+
     // Directives
     MiniWordComponent,
     HighlightDirective,
@@ -59,7 +66,13 @@ import { EmbaucheComponent } from './cv/embauche/embauche.component';
     CarreePipe,
     WeekTodosComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot(), // ToastrModule added
+  ],
   providers: [
     {
       // provide: LOGGER_TOKEN,
