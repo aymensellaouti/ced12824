@@ -30,6 +30,8 @@ import { WeekTodosComponent } from './todo/week-todos/week-todos.component';
 import { UUID_TOKEN } from './injection tokens/uuid.injection-token';
 
 import {v4 as uuidV4} from 'uuid'
+import { DetailsCvComponent } from './cv/details-cv/details-cv.component';
+import { EmbaucheComponent } from './cv/embauche/embauche.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +49,8 @@ import {v4 as uuidV4} from 'uuid'
     CvListComponent,
     CvCardComponent,
     CvItemComponent,
+    DetailsCvComponent,
+    EmbaucheComponent,
     // Directives
     MiniWordComponent,
     HighlightDirective,
