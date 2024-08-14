@@ -36,6 +36,7 @@ import { UUID_TOKEN } from './injection tokens/uuid.injection-token';
 import {v4 as uuidV4} from 'uuid'
 import { DetailsCvComponent } from './cv/details-cv/details-cv.component';
 import { EmbaucheComponent } from './cv/embauche/embauche.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 
 @NgModule({
@@ -65,6 +66,7 @@ import { EmbaucheComponent } from './cv/embauche/embauche.component';
     DefaultImagePipe,
     CarreePipe,
     WeekTodosComponent,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,
