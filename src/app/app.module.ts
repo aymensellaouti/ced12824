@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -78,9 +79,12 @@ import { TestObservableComponent } from './rxjs/test-observable/test-observable.
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     FormsModule,
     BrowserAnimationsModule, // required animations module
+    HttpClientModule,
+
+    AppRoutingModule,
+
     ToastrModule.forRoot(), // ToastrModule added
   ],
   providers: [
