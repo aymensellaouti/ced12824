@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Cv } from '../model/cv.model';
+import { Subject } from 'rxjs';
 
-
+const API_SWAGGER =
+  'https://apilb.tridevs.net/explorer/#!/personne/personne_find';
 
 @Injectable({
   providedIn: 'root',
@@ -12,6 +14,9 @@ export class CvService {
     new Cv(2, 'Dali', 'sourour', 'Dev', '1234', 20, '     '),
   ];
 
+  // Un flux des cvs Sélectionnées => Cv1 Cv3 Cv4 Cv5 Cv6 Cv1 Cv2
+  #selectCVSubject$ = new Subject<Cv>();
+  selectCv$ = this.#selectCVSubject$.asObservable();
   /**
    * Retourne la liste des cvs
    * @returns Cv[]
@@ -45,5 +50,9 @@ export class CvService {
       return true;
     }
     return false;
+  }
+
+  selectCv(cv: Cv): void {
+    this.#selectCVSubject$.next(cv);
   }
 }

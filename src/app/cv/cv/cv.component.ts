@@ -27,6 +27,9 @@ export class CvComponent {
   {
     this.loggerService.logger('cv component');
     this.sayHello.hello();
+    this.cvService.selectCv$.subscribe(
+      cv => this.selectedCv = cv
+    )
     this.loggers.forEach((loggerService) => loggerService.logger('cc'));
   }
   onForwardCv(cv: Cv) {
