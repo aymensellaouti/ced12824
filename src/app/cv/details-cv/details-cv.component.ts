@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { CvService } from "../services/cv.service";
 import { APP_ROUTES } from "src/app/config/app-routes.config";
 import { AuthService } from "src/app/auth/services/auth.service";
+import { Observable } from "rxjs";
 
 @Component({
   selector: 'app-details-cv',
@@ -11,25 +12,23 @@ import { AuthService } from "src/app/auth/services/auth.service";
   styleUrls: ['./details-cv.component.css'],
 })
 export class DetailsCvComponent {
-  cv: Cv | null = null;
   cvService = inject(CvService);
-  authService = inject(AuthService);
   acr = inject(ActivatedRoute);
+  cv$: Observable<Cv> = this.cvService.getCvById(this.acr.snapshot.params['id']);
+  authService = inject(AuthService);
   router = inject(Router);
   constructor() {
-    const id = this.acr.snapshot.params['id'];
-    this.cvService.getCvById(id).subscribe({
-      next: (cv) => (this.cv = cv),
-      error: (err) => this.router.navigate([APP_ROUTES.cv]),
-    });
+    // const id = ;
+    // .subscribe({
+    //   next: (cv) => (this.cv = cv),
+    //   error: (err) => this.router.navigate([APP_ROUTES.cv]),
+    // });
   }
 
-  deleteCv() {
-    if (this.cv) {
-      this.cvService.deleteCvId(this.cv.id).subscribe({
+  deleteCv(cv: Cv) {
+      this.cvService.deleteCvId(cv.id).subscribe({
         next: () => this.router.navigate([APP_ROUTES.cv]),
         error: (e) => console.log(e),
       });
     }
-  }
 }
