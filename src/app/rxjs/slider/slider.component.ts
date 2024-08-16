@@ -1,6 +1,6 @@
 
 import { Component, Input } from '@angular/core';
-import { Observable } from 'rxjs';
+import { forkJoin, map, Observable, timer } from 'rxjs';
 
 @Component({
   selector: 'app-slider',
@@ -18,6 +18,10 @@ export class SliderComponent {
   ];
   @Input() intervalTimer = 1000;
   @Input() size = 150;
-  slider$!: Observable<string>
+  slider$: Observable<string> = timer(0,this.intervalTimer).pipe(
+    // 0 1 2 3 4 5
+    map( index => this.images[index % this.images.length])
+    //=>
+  )
 
 }

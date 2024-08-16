@@ -10,14 +10,13 @@ import { LoginResonse } from '../dto/login-response.dto';
 })
 export class AuthService {
   http = inject(HttpClient);
-  authService = inject(AuthService);
   constructor() {}
   login(credentials: Credentials): Observable<LoginResonse> {
     // Todo: Appeler l'api avec les credentials et retourner un observable
     return this.http.post<LoginResonse>(APP_API.login, credentials).pipe(
       tap((response) => {
         // Cacher le token
-        this.authService.setToken(response.id);
+        this.setToken(response.id);
       })
     );
   }

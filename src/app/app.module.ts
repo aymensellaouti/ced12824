@@ -11,7 +11,7 @@ import { AppComponent } from './app.component';
 import { FirstComponent } from './components/first/first.component';
 import { SecondComponent } from './components/second/second.component';
 import { ColorComponent } from './components/color/color.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TwoComponent } from './components/two/two.component';
 import { RotatingCardComponent } from './components/rotating-card/rotating-card.component';
 import { PereComponent } from './components/pere/pere.component';
@@ -45,6 +45,8 @@ import { TestObservableComponent } from './rxjs/test-observable/test-observable.
 import { AddCvComponent } from './cv/add-cv/add-cv.component';
 import { authInterceptorProvider } from './auth/interceptors/auth.interceptor';
 import { SliderComponent } from './rxjs/slider/slider.component';
+import { AutocompleteComponent } from './cv/autocomplete/autocomplete.component';
+import { ProductsComponent } from './products/products.component';
 
 
 @NgModule({
@@ -66,6 +68,8 @@ import { SliderComponent } from './rxjs/slider/slider.component';
     CvItemComponent,
     DetailsCvComponent,
     EmbaucheComponent,
+    AddCvComponent,
+    AutocompleteComponent,
 
     // Directives
     MiniWordComponent,
@@ -79,15 +83,16 @@ import { SliderComponent } from './rxjs/slider/slider.component';
     TestFormComponent,
     LoginComponent,
     TestObservableComponent,
-    AddCvComponent,
-
-    SliderComponent
+    //RXJS
+    SliderComponent,
+    ProductsComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     BrowserAnimationsModule, // required animations module
     HttpClientModule,
+    ReactiveFormsModule,
 
     AppRoutingModule,
 
