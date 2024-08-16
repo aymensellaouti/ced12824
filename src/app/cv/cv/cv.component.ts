@@ -6,6 +6,7 @@ import { SayHello } from 'src/app/services/sayHello.service';
 import { TodoService } from 'src/app/todo/service/todo.service';
 import { CvService } from '../services/cv.service';
 import { ToastrService } from 'ngx-toastr';
+import { catchError, Observable, of, retry } from 'rxjs';
 
 @Component({
   selector: 'app-cv',
@@ -14,7 +15,18 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class CvComponent {
   cvService = inject(CvService);
-  cvs: Cv[] = [];
+  cvs$: Observable<Cv[]> = this.cvService.getCvs().pipe(
+    retry({
+      delay:2000,
+      count: 3
+    }),
+    catchError( e => {
+      this.toastr.error(
+        'Problème d accès au serveur merci de contacter l admin'
+      );
+      return of(this.cvService.getFakeCvs());
+    })
+  );
   selectedCv: Cv | null = null;
   toastr = inject(ToastrService);
   constructor(
@@ -27,13 +39,13 @@ export class CvComponent {
     private todoService: TodoService
   )
   {
-    this.cvService.getCvs().subscribe({
-      next: (cvs) => this.cvs = cvs,
-      error: (e) => {
-        this.toastr.error('Problème d accès au serveur merci de contacter l admin');
-        this.cvs = this.cvService.getFakeCvs();
-      }
-    })
+    // this.cvService.getCvs().subscribe({
+    //   next: (cvs) => this.cvs = cvs,
+    //   error: (e) => {
+    //     this.toastr.error('Problème d accès au serveur merci de contacter l admin');
+    //     this.cvs = this.cvService.getFakeCvs();
+    //   }
+    // })
     this.loggerService.logger('cv component');
     this.sayHello.hello();
     this.cvService.selectCv$.subscribe(

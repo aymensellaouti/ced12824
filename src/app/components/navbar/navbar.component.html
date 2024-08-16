@@ -6,7 +6,7 @@
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
       <a class="nav-item nav-link" [routerLinkActiveOptions]="{exact: true}" [routerLink]="['']" routerLinkActive="active text-primary">Home</a>
-      <a class="nav-item nav-link" [routerLink]="['cv']" routerLinkActive="active text-primary">Cv</a>
+      <a class="nav-item nav-link" [routerLinkActiveOptions]="{exact: true}" [routerLink]="['cv']" routerLinkActive="active text-primary">Cv</a>
       <a class="nav-item nav-link" *ngIf="authService.isAuthenticated()" [routerLink]="['cv','add']" routerLinkActive="active text-primary"> Add Cv</a>
       <a class="nav-item nav-link" [routerLink]="['todo']" routerLinkActive="active text-primary">Todo</a>
       <a class="nav-item nav-link" [routerLink]="['word']" routerLinkActive="active text-primary">Mini Word</a>

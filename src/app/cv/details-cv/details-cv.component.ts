@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { CvService } from "../services/cv.service";
 import { APP_ROUTES } from "src/app/config/app-routes.config";
 import { AuthService } from "src/app/auth/services/auth.service";
-import { Observable } from "rxjs";
+import { catchError, EMPTY, Observable } from "rxjs";
 
 @Component({
   selector: 'app-details-cv',
@@ -14,7 +14,14 @@ import { Observable } from "rxjs";
 export class DetailsCvComponent {
   cvService = inject(CvService);
   acr = inject(ActivatedRoute);
-  cv$: Observable<Cv> = this.cvService.getCvById(this.acr.snapshot.params['id']);
+  cv$: Observable<Cv> = this.cvService.getCvById(this.acr.snapshot.params['id']).pipe(
+    catchError(
+      (e) => {
+        this.router.navigate([APP_ROUTES.cv]);
+        return EMPTY;
+      }
+    )
+  );
   authService = inject(AuthService);
   router = inject(Router);
   constructor() {
