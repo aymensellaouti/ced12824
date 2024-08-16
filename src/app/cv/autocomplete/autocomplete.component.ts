@@ -20,7 +20,7 @@ export class AutocompleteComponent {
   ngOnInit(): void {
     this.form = new FormGroup({ name: new FormControl() });
     const nameInput = this.form.controls['name'];
-    this.cvs$!;
+    this.cvs$! = nameInput.valueChanges;
 
   }
 

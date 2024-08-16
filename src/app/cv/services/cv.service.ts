@@ -70,6 +70,14 @@ export class CvService {
     return this.#cvs.find((cv) => cv.id === +id) ?? null;
   }
 
+  getCvsByName(name: string): Observable<Cv[]> {
+    const params = new HttpParams().set(
+      'filter',
+      `{"where":{"name":{"like":"%${name}%"}}}`
+    );
+    return this.http.get<Cv[]>(APP_API.cv, { params });
+  }
+
   /**
    *
    * Supprime un cv s'il le trouve
