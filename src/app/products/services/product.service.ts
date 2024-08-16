@@ -3,7 +3,8 @@ import { Injectable } from '@angular/core';
 
 import { Settings } from '../dto/product-settings.dto';
 import { ProductApiResponse } from '../dto/product-api-response.dto';
-import { APP_API } from 'src/app/config/api.config';
+import { APP_API } from 'src/app/config/app-api.config';
+
 
 @Injectable({
   providedIn: 'root'
