@@ -1,0 +1,5 @@
+<p>master-detail-cv works!</p>
+<ng-container *ngIf="cvs$ | async as cvs">
+  <app-cv-list [cvs]="cvs" />
+</ng-container>
+<router-outlet />

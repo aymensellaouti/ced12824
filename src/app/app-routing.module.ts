@@ -13,15 +13,36 @@ import { LoginComponent } from './auth/login/login.component';
 import { AddCvComponent } from './cv/add-cv/add-cv.component';
 import { authGuard } from './auth/guards/auth.guard';
 import { ProductsComponent } from './products/products.component';
+import { MasterDetailCvComponent } from './cv/master-detail-cv/master-detail-cv.component';
+import { cvsResolver } from './cv/resolvers/cvs.resolver';
 
 
 // /cv
 
 const routes: Routes = [
   { path: '', component: FirstComponent },
-  { path: APP_ROUTES.cv, component: CvComponent },
-  { path: `${APP_ROUTES.cv}/add`, component: AddCvComponent, canActivate: [authGuard] },
-  { path: `${APP_ROUTES.cv}/:id`, component: DetailsCvComponent },
+  {
+    path: APP_ROUTES.cv,
+    children: [
+      {
+        path: '',
+        resolve: {
+          cvs: cvsResolver
+        },
+        component: CvComponent },
+      {
+        path: `add`,
+        component: AddCvComponent,
+        canActivate: [authGuard],
+      },
+      {
+        path: 'list',
+        component: MasterDetailCvComponent,
+        children: [{ path: ':id', component: DetailsCvComponent }],
+      },
+      { path: `:id`, component: DetailsCvComponent },
+    ],
+  },
   { path: 'todo', component: TodoComponent },
   { path: 'word', component: MiniWordComponent },
   { path: 'color', component: ColorComponent },

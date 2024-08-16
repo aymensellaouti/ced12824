@@ -47,6 +47,8 @@ import { SliderComponent } from './rxjs/slider/slider.component';
 import { AutocompleteComponent } from './cv/autocomplete/autocomplete.component';
 import { ProductsComponent } from './products/products.component';
 import { AddCvComponent } from './cv/add-cv/add-cv.component';
+import { MasterDetailCvComponent } from './cv/master-detail-cv/master-detail-cv.component';
+import { NgxUiLoaderModule } from 'ngx-ui-loader';
 
 
 @NgModule({
@@ -70,7 +72,7 @@ import { AddCvComponent } from './cv/add-cv/add-cv.component';
     EmbaucheComponent,
     AddCvComponent,
     AutocompleteComponent,
-
+    MasterDetailCvComponent,
     // Directives
     MiniWordComponent,
     HighlightDirective,
@@ -85,7 +87,7 @@ import { AddCvComponent } from './cv/add-cv/add-cv.component';
     TestObservableComponent,
     //RXJS
     SliderComponent,
-    ProductsComponent
+    ProductsComponent,
   ],
   imports: [
     BrowserModule,
@@ -97,6 +99,7 @@ import { AddCvComponent } from './cv/add-cv/add-cv.component';
     AppRoutingModule,
 
     ToastrModule.forRoot(), // ToastrModule added
+    NgxUiLoaderModule,
   ],
   providers: [
     authInterceptorProvider,

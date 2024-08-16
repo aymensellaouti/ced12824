@@ -1,15 +1,16 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnDestroy } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { filter, map, Observable } from 'rxjs';
+import { filter, map, Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-test-observable',
   templateUrl: './test-observable.component.html',
   styleUrls: ['./test-observable.component.css'],
 })
-export class TestObservableComponent {
+export class TestObservableComponent implements OnDestroy{
   myObservable$: Observable<number>;
-  toastr = inject(ToastrService)
+  toastr = inject(ToastrService);
+  subscriptions = new Subscription();
 
   constructor() {
     // Définition de l'observable
@@ -23,12 +24,15 @@ export class TestObservableComponent {
         observer.next(i--);
       }, 1000);
     });
+
+    this.subscriptions.add(
     // Je m'inscrit à l'observable
     this.myObservable$
       // 5 4 3 2 1
       .subscribe((val) => {
         console.log(val);
-      });
+      }));
+      this.subscriptions.add(
       // setTimeout(() => {
       // Je m'inscrit à l'observable
       this.myObservable$
@@ -42,8 +46,10 @@ export class TestObservableComponent {
         .subscribe({
           next: (val) => { this.toastr.info('' + val);},
           complete: () => {this.toastr.warning('BOOOMMMM !!!!');}
-        });
-
+        }));
     // }, 3000);
+  }
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
   }
 }

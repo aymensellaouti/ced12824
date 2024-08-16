@@ -7,6 +7,7 @@ import { TodoService } from 'src/app/todo/service/todo.service';
 import { CvService } from '../services/cv.service';
 import { ToastrService } from 'ngx-toastr';
 import { catchError, Observable, of, retry } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-cv',
@@ -15,20 +16,10 @@ import { catchError, Observable, of, retry } from 'rxjs';
 })
 export class CvComponent {
   cvService = inject(CvService);
-  cvs$: Observable<Cv[]> = this.cvService.getCvs().pipe(
-    retry({
-      delay:2000,
-      count: 3
-    }),
-    catchError( e => {
-      this.toastr.error(
-        'Problème d accès au serveur merci de contacter l admin'
-      );
-      return of(this.cvService.getFakeCvs());
-    })
-  );
-  selectedCv: Cv | null = null;
+  selectedCv$: Observable<Cv> = this.cvService.selectCv$;
   toastr = inject(ToastrService);
+  acr = inject(ActivatedRoute);
+  cvs = this.acr.snapshot.data['cvs'];
   constructor(
     // @Inject(LOGGER_TOKEN)
     // @Inject(LoggerService)
@@ -37,8 +28,7 @@ export class CvComponent {
     @Inject(LOGGER_TOKEN)
     private loggers: LoggerService[],
     private todoService: TodoService
-  )
-  {
+  ) {
     // this.cvService.getCvs().subscribe({
     //   next: (cvs) => this.cvs = cvs,
     //   error: (e) => {
@@ -48,13 +38,9 @@ export class CvComponent {
     // })
     this.loggerService.logger('cv component');
     this.sayHello.hello();
-    this.cvService.selectCv$.subscribe(
-      cv => this.selectedCv = cv
-    )
+    // this.cvService.selectCv$.subscribe(
+    //   cv => this.selectedCv = cv
+    // )
     this.loggers.forEach((loggerService) => loggerService.logger('cc'));
-  }
-  onForwardCv(cv: Cv) {
-    this.selectedCv = cv;
-    // this.todoService.logTodos();
   }
 }

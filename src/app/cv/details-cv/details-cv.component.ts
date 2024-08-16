@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { CvService } from "../services/cv.service";
 import { APP_ROUTES } from "src/app/config/app-routes.config";
 import { AuthService } from "src/app/auth/services/auth.service";
-import { catchError, EMPTY, Observable } from "rxjs";
+import { catchError, EMPTY, Observable, Subject, switchMap, takeUntil } from "rxjs";
 
 @Component({
   selector: 'app-details-cv',
@@ -14,14 +14,16 @@ import { catchError, EMPTY, Observable } from "rxjs";
 export class DetailsCvComponent {
   cvService = inject(CvService);
   acr = inject(ActivatedRoute);
-  cv$: Observable<Cv> = this.cvService.getCvById(this.acr.snapshot.params['id']).pipe(
+  signalSubject = new Subject();
+  cv$: Observable<Cv> = this.acr.params.pipe(
+    switchMap(params => this.cvService.getCvById(params['id'])),
     catchError(
       (e) => {
         this.router.navigate([APP_ROUTES.cv]);
         return EMPTY;
       }
     )
-  );
+  )
   authService = inject(AuthService);
   router = inject(Router);
   constructor() {
@@ -33,9 +35,18 @@ export class DetailsCvComponent {
   }
 
   deleteCv(cv: Cv) {
-      this.cvService.deleteCvId(cv.id).subscribe({
+      this.cvService.deleteCvId(cv.id)
+      .pipe(
+        takeUntil(this.signalSubject)
+      )
+      .subscribe({
         next: () => this.router.navigate([APP_ROUTES.cv]),
         error: (e) => console.log(e),
       });
     }
+
+  ngOnDestroy(): void {
+    this.signalSubject.next('eli iji :D');
+    this.signalSubject.complete();
+  }
 }
