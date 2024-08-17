@@ -49,6 +49,8 @@ import { ProductsComponent } from './products/products.component';
 import { AddCvComponent } from './cv/add-cv/add-cv.component';
 import { MasterDetailCvComponent } from './cv/master-detail-cv/master-detail-cv.component';
 import { NgxUiLoaderModule } from 'ngx-ui-loader';
+import { RhComponent } from './optimizationPattern/rh/rh.component';
+import { UserListComponent } from './optimizationPattern/user-list/user-list.component';
 
 
 @NgModule({
@@ -88,6 +90,10 @@ import { NgxUiLoaderModule } from 'ngx-ui-loader';
     //RXJS
     SliderComponent,
     ProductsComponent,
+
+    //Optimization
+    RhComponent,
+    UserListComponent,
   ],
   imports: [
     BrowserModule,
