@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -34,7 +34,7 @@ import { SayHello } from './services/sayHello.service';
 import { WeekTodosComponent } from './todo/week-todos/week-todos.component';
 import { UUID_TOKEN } from './injection tokens/uuid.injection-token';
 
-import {v4 as uuidV4} from 'uuid'
+import { v4 as uuidV4 } from 'uuid';
 import { DetailsCvComponent } from './cv/details-cv/details-cv.component';
 import { EmbaucheComponent } from './cv/embauche/embauche.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -51,7 +51,7 @@ import { MasterDetailCvComponent } from './cv/master-detail-cv/master-detail-cv.
 import { NgxUiLoaderModule } from 'ngx-ui-loader';
 import { RhComponent } from './optimizationPattern/rh/rh.component';
 import { UserListComponent } from './optimizationPattern/user-list/user-list.component';
-
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
   declarations: [
@@ -106,6 +106,12 @@ import { UserListComponent } from './optimizationPattern/user-list/user-list.com
 
     ToastrModule.forRoot(), // ToastrModule added
     NgxUiLoaderModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: !isDevMode(),
+      // Register the ServiceWorker as soon as the application is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000',
+    }),
   ],
   providers: [
     authInterceptorProvider,
