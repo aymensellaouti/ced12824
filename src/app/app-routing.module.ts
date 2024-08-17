@@ -15,6 +15,7 @@ import { authGuard } from './auth/guards/auth.guard';
 import { ProductsComponent } from './products/products.component';
 import { MasterDetailCvComponent } from './cv/master-detail-cv/master-detail-cv.component';
 import { cvsResolver } from './cv/resolvers/cvs.resolver';
+import { RhComponent } from './optimizationPattern/rh/rh.component';
 
 
 // /cv
@@ -27,9 +28,10 @@ const routes: Routes = [
       {
         path: '',
         resolve: {
-          cvs: cvsResolver
+          cvs: cvsResolver,
         },
-        component: CvComponent },
+        component: CvComponent,
+      },
       {
         path: `add`,
         component: AddCvComponent,
@@ -47,6 +49,7 @@ const routes: Routes = [
   { path: 'word', component: MiniWordComponent },
   { path: 'color', component: ColorComponent },
   { path: 'products', component: ProductsComponent },
+  { path: 'rh', component: RhComponent },
   { path: APP_ROUTES.login, component: LoginComponent },
   { path: 'client/dossier/:element/:id', component: SecondComponent },
   { path: '**', component: NF404Component },

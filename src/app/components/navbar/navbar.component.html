@@ -16,6 +16,7 @@
       <a class="nav-item nav-link" [routerLink]="['word']" routerLinkActive="active text-primary">Mini Word</a>
       <a class="nav-item nav-link" [routerLink]="['color']" routerLinkActive="active text-primary">Color</a>
       <a class="nav-item nav-link" [routerLink]="['products']" routerLinkActive="active text-primary">Products</a>
+      <a class="nav-item nav-link" [routerLink]="['rh']" routerLinkActive="active text-primary">RH</a>
       <a class="nav-item nav-link" *ngIf="authService.isLoggedOut$ | async" [routerLink]="['login']" routerLinkActive="active text-primary">Login</a>
       <a class="nav-item nav-link" *ngIf="authService.isLoggedIn$ | async" (click)="logout()">Logout</a>
     </div>
