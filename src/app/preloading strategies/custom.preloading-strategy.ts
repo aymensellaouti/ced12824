@@ -4,8 +4,10 @@ import { Observable, of } from "rxjs";
 
 @Injectable({providedIn: 'root'})
 export class CustomPreloadingStrategy implements PreloadingStrategy {
-  preload(route: Route, fn: () => Observable<any>): Observable<any> {
-    console.log({ route });
+  preload(route: Route, preload: () => Observable<any>): Observable<any> {
+    if (route.data && route.data['preload']) {
+      return preload();
+    }
 
     return of(null);
   }
