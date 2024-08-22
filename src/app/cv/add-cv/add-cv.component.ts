@@ -2,10 +2,12 @@ import { Component, inject } from '@angular/core';
 import { Validators, AbstractControlOptions, FormBuilder, AbstractControl } from '@angular/forms';
 import { CvService } from '../services/cv.service';
 import { Cv } from '../model/cv.model';
-import { catchError, EMPTY, tap } from 'rxjs';
+import { catchError, EMPTY, filter, tap } from 'rxjs';
 import { Router } from '@angular/router';
 import { APP_ROUTES } from 'src/app/config/app-routes.config';
 import { ToastrService } from 'ngx-toastr';
+import { APP_CONSTANTES } from 'src/app/config/constantes.config';
+import { uniqueCinValidator } from 'src/app/validators/uniqueCin.async-validator';
 
 @Component({
   selector: 'app-add-cv',
@@ -26,6 +28,7 @@ export class AddCvComponent {
       '',
       {
         validators: [Validators.required, Validators.pattern('[0-9]{8}')],
+        asyncValidators: [uniqueCinValidator(this.cvService)],
       },
     ],
     age: [
@@ -36,19 +39,44 @@ export class AddCvComponent {
     ],
   });
   constructor() {
-    console.log('adding cv component');
+    const addForm = localStorage.getItem(APP_CONSTANTES.addForm);
+    if (addForm) this.form.patchValue(JSON.parse(addForm));
+
+    this.age?.valueChanges
+      .pipe(
+        tap((age) =>
+          age && age < 18 ? this.path?.disable() : this.path?.enable()
+        )
+      )
+      .subscribe();
+
+    this.form.statusChanges.pipe(
+      filter((status) => this.form.valid),
+      tap((_) =>
+        localStorage.setItem(
+          APP_CONSTANTES.addForm,
+          JSON.stringify(this.form.value)
+        )
+      )
+    );
   }
 
   addCv() {
-    this.cvService.addCv(this.form.value as Cv)
-    .pipe(
-      tap( () => this.router.navigate([APP_ROUTES.cv])),
-      catchError(() => {
-        this.toastr.error(`Un problème au niveau du serveur veuillez contacter l'admin`)
-        return EMPTY;
-      })
-    )
-    .subscribe();
+    this.cvService
+      .addCv(this.form.value as Cv)
+      .pipe(
+        tap(() => {
+          this.router.navigate([APP_ROUTES.cv]);
+          localStorage.removeItem(APP_CONSTANTES.addForm);
+        }),
+        catchError(() => {
+          this.toastr.error(
+            `Un problème au niveau du serveur veuillez contacter l'admin`
+          );
+          return EMPTY;
+        })
+      )
+      .subscribe();
   }
 
   get name(): AbstractControl {

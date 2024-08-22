@@ -20,11 +20,11 @@
   </div>
   <div
     *ngIf="
-      form.errors && form.errors['cinFirstCars'] && cin?.touched && age?.touched
+      cin.errors && cin.errors['uniqueCv'] && cin?.touched
     "
     class="alert alert-danger"
   >
-    Cette Cin est invalide
+    {{ cin.errors['uniqueCv'] }}
   </div>
   Job: <input type="text" class="form-control" formControlName="job" /> Path:
   <input type="text" class="form-control" formControlName="path" />
@@ -33,4 +33,4 @@
     add cv
   </button>
 </form>
-{{ form.errors | json }}
+<!-- {{ form.errors | json }} -->
