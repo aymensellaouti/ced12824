@@ -21,30 +21,7 @@ import { RhComponent } from './optimizationPattern/rh/rh.component';
 
 const routes: Routes = [
   { path: '', component: FirstComponent },
-  {
-    path: APP_ROUTES.cv,
-    children: [
-      {
-        path: '',
-        resolve: {
-          cvs: cvsResolver,
-        },
-        component: CvComponent,
-      },
-      {
-        path: `add`,
-        component: AddCvComponent,
-        canActivate: [authGuard],
-      },
-      {
-        path: 'list',
-        component: MasterDetailCvComponent,
-        children: [{ path: ':id', component: DetailsCvComponent }],
-      },
-      { path: `:id`, component: DetailsCvComponent },
-    ],
-  },
-    { path: 'word', component: MiniWordComponent },
+  { path: 'word', component: MiniWordComponent },
   { path: 'color', component: ColorComponent },
   { path: 'products', component: ProductsComponent },
   { path: 'rh', component: RhComponent },

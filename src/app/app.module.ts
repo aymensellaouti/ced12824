@@ -16,14 +16,9 @@ import { TwoComponent } from './components/two/two.component';
 import { RotatingCardComponent } from './components/rotating-card/rotating-card.component';
 import { PereComponent } from './components/pere/pere.component';
 import { FilsComponent } from './components/fils/fils.component';
-import { CvComponent } from './cv/cv/cv.component';
-import { CvListComponent } from './cv/cv-list/cv-list.component';
-import { CvCardComponent } from './cv/cv-card/cv-card.component';
-import { CvItemComponent } from './cv/cv-item/cv-item.component';
 import { MiniWordComponent } from './directives/mini-word/mini-word.component';
 import { HighlightDirective } from './directives/highlight.directive';
 import { RainbowDirective } from './directives/rainbow.directive';
-import { DefaultImagePipe } from './cv/pipes/default-image.pipe';
 import { CarreePipe } from './pipes/carree.pipe';
 import { LOGGER_TOKEN } from './injection tokens/logger.injection-token';
 import { LoggerService } from './services/logger.service';
@@ -32,8 +27,6 @@ import { SayHello } from './services/sayHello.service';
 import { UUID_TOKEN } from './injection tokens/uuid.injection-token';
 
 import {v4 as uuidV4} from 'uuid'
-import { DetailsCvComponent } from './cv/details-cv/details-cv.component';
-import { EmbaucheComponent } from './cv/embauche/embauche.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { NF404Component } from './components/nf404/nf404.component';
 import { TestFormComponent } from './form/test-form/test-form.component';
@@ -41,14 +34,12 @@ import { LoginComponent } from './auth/login/login.component';
 import { TestObservableComponent } from './rxjs/test-observable/test-observable.component';
 import { authInterceptorProvider } from './auth/interceptors/auth.interceptor';
 import { SliderComponent } from './rxjs/slider/slider.component';
-import { AutocompleteComponent } from './cv/autocomplete/autocomplete.component';
 import { ProductsComponent } from './products/products.component';
-import { AddCvComponent } from './cv/add-cv/add-cv.component';
-import { MasterDetailCvComponent } from './cv/master-detail-cv/master-detail-cv.component';
 import { NgxUiLoaderModule } from 'ngx-ui-loader';
 import { RhComponent } from './optimizationPattern/rh/rh.component';
 import { UserListComponent } from './optimizationPattern/user-list/user-list.component';
 import { TodoModule } from './todo/todo.module';
+import { CvModule } from './cv/cv.module';
 
 
 @NgModule({
@@ -63,21 +54,11 @@ import { TodoModule } from './todo/todo.module';
     FilsComponent,
 
 
-    // Cvs
-    CvComponent,
-    CvListComponent,
-    CvCardComponent,
-    CvItemComponent,
-    DetailsCvComponent,
-    EmbaucheComponent,
-    AddCvComponent,
-    AutocompleteComponent,
-    MasterDetailCvComponent,
+
     // Directives
     MiniWordComponent,
     HighlightDirective,
     RainbowDirective,
-    DefaultImagePipe,
     CarreePipe,
     NavbarComponent,
     NF404Component,
@@ -100,6 +81,7 @@ import { TodoModule } from './todo/todo.module';
     ReactiveFormsModule,
 
     TodoModule,
+    CvModule,
     AppRoutingModule,
     ToastrModule.forRoot(), // ToastrModule added
     NgxUiLoaderModule,
