@@ -8,6 +8,7 @@ import { APP_ROUTES } from 'src/app/config/app-routes.config';
 import { ToastrService } from 'ngx-toastr';
 import { APP_CONSTANTES } from 'src/app/config/constantes.config';
 import { uniqueCinValidator } from 'src/app/validators/uniqueCin.async-validator';
+import { cinAgeValidator } from 'src/app/validators/ageCin.validator';
 
 @Component({
   selector: 'app-add-cv',
@@ -19,25 +20,30 @@ export class AddCvComponent {
   cvService = inject(CvService);
   router = inject(Router);
   toastr = inject(ToastrService);
-  form = this.formBuilder.group({
-    name: ['', Validators.required],
-    firstname: ['', Validators.required],
-    path: [''],
-    job: ['', Validators.required],
-    cin: [
-      '',
-      {
-        validators: [Validators.required, Validators.pattern('[0-9]{8}')],
-        asyncValidators: [uniqueCinValidator(this.cvService)],
-      },
-    ],
-    age: [
-      0,
-      {
-        validators: [Validators.required],
-      },
-    ],
-  });
+  form = this.formBuilder.group(
+    {
+      name: ['', Validators.required],
+      firstname: ['', Validators.required],
+      path: [''],
+      job: ['', Validators.required],
+      cin: [
+        '',
+        {
+          validators: [Validators.required, Validators.pattern('[0-9]{8}')],
+          asyncValidators: [uniqueCinValidator(this.cvService)],
+        },
+      ],
+      age: [
+        0,
+        {
+          validators: [Validators.required],
+        },
+      ],
+    },
+    {
+      validators: [cinAgeValidator],
+    }
+  );
   constructor() {
     const addForm = localStorage.getItem(APP_CONSTANTES.addForm);
     if (addForm) this.form.patchValue(JSON.parse(addForm));
