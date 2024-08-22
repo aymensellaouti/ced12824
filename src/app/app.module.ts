@@ -21,17 +21,14 @@ import { CvListComponent } from './cv/cv-list/cv-list.component';
 import { CvCardComponent } from './cv/cv-card/cv-card.component';
 import { CvItemComponent } from './cv/cv-item/cv-item.component';
 import { MiniWordComponent } from './directives/mini-word/mini-word.component';
-import { TodoComponent } from './todo/todo/todo.component';
 import { HighlightDirective } from './directives/highlight.directive';
 import { RainbowDirective } from './directives/rainbow.directive';
 import { DefaultImagePipe } from './cv/pipes/default-image.pipe';
 import { CarreePipe } from './pipes/carree.pipe';
-import { loggerProviderFactory } from './provider factory/logger.provider-factory';
 import { LOGGER_TOKEN } from './injection tokens/logger.injection-token';
 import { LoggerService } from './services/logger.service';
 import { Logger2Service } from './services/logger2.service';
 import { SayHello } from './services/sayHello.service';
-import { WeekTodosComponent } from './todo/week-todos/week-todos.component';
 import { UUID_TOKEN } from './injection tokens/uuid.injection-token';
 
 import {v4 as uuidV4} from 'uuid'
@@ -51,6 +48,7 @@ import { MasterDetailCvComponent } from './cv/master-detail-cv/master-detail-cv.
 import { NgxUiLoaderModule } from 'ngx-ui-loader';
 import { RhComponent } from './optimizationPattern/rh/rh.component';
 import { UserListComponent } from './optimizationPattern/user-list/user-list.component';
+import { TodoModule } from './todo/todo.module';
 
 
 @NgModule({
@@ -63,7 +61,7 @@ import { UserListComponent } from './optimizationPattern/user-list/user-list.com
     RotatingCardComponent,
     PereComponent,
     FilsComponent,
-    TodoComponent,
+
 
     // Cvs
     CvComponent,
@@ -81,7 +79,6 @@ import { UserListComponent } from './optimizationPattern/user-list/user-list.com
     RainbowDirective,
     DefaultImagePipe,
     CarreePipe,
-    WeekTodosComponent,
     NavbarComponent,
     NF404Component,
     TestFormComponent,
@@ -102,8 +99,8 @@ import { UserListComponent } from './optimizationPattern/user-list/user-list.com
     HttpClientModule,
     ReactiveFormsModule,
 
+    TodoModule,
     AppRoutingModule,
-
     ToastrModule.forRoot(), // ToastrModule added
     NgxUiLoaderModule,
   ],
