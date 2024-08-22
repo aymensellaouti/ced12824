@@ -31,4 +31,4 @@ import { ReactiveFormsModule } from '@angular/forms';
   ],
   imports: [CommonModule, CvRoutingModule, ReactiveFormsModule],
 })
-export class CvModule {}
+export default class CvModule {}

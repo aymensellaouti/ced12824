@@ -38,7 +38,6 @@ import { ProductsComponent } from './products/products.component';
 import { NgxUiLoaderModule } from 'ngx-ui-loader';
 import { RhComponent } from './optimizationPattern/rh/rh.component';
 import { UserListComponent } from './optimizationPattern/user-list/user-list.component';
-import { CvModule } from './cv/cv.module';
 
 
 @NgModule({
@@ -78,7 +77,6 @@ import { CvModule } from './cv/cv.module';
     BrowserAnimationsModule, // required animations module
     HttpClientModule,
     ReactiveFormsModule,
-    CvModule,
     AppRoutingModule,
     ToastrModule.forRoot(), // ToastrModule added
     NgxUiLoaderModule,
