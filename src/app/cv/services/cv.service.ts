@@ -28,6 +28,14 @@ export class CvService {
     return this.http.get<Cv[]>(APP_API.cv);
   }
   /**
+   * Ajoute un cv
+   * @returns Observable cv
+   * @param Cv:Partial<Cv>
+   */
+  addCv(cv: Partial<Cv>): Observable<Cv> {
+    return this.http.post<Cv>(APP_API.cv,cv);
+  }
+  /**
    * Retourne la liste des cvs
    * @returns Cv[]
    */
