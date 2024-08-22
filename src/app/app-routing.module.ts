@@ -24,6 +24,10 @@ const routes: Routes = [
   { path: 'word', component: MiniWordComponent },
   { path: 'color', component: ColorComponent },
   { path: 'products', component: ProductsComponent },
+  {
+    path: 'todo',
+    loadChildren: () => import('./todo/todo.module')
+  },
   { path: 'rh', component: RhComponent },
   { path: APP_ROUTES.login, component: LoginComponent },
   { path: 'client/dossier/:element/:id', component: SecondComponent },
