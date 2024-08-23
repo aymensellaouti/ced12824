@@ -36,8 +36,10 @@ import { authInterceptorProvider } from './auth/interceptors/auth.interceptor';
 import { SliderComponent } from './rxjs/slider/slider.component';
 import { ProductsComponent } from './products/products.component';
 import { NgxUiLoaderModule } from 'ngx-ui-loader';
-import { RhComponent } from './optimizationPattern/rh/rh.component';
-import { UserListComponent } from './optimizationPattern/user-list/user-list.component';
+import { SignalTodoComponent } from './todo/signal-todo/signal-todo.component';
+import { ListTodosComponent } from './todo/list-todos/list-todos.component';
+// import { RhComponent } from './optimizationPattern/rh/rh.component';
+// import { UserListComponent } from './optimizationPattern/user-list/user-list.component';
 
 
 @NgModule({
@@ -67,9 +69,13 @@ import { UserListComponent } from './optimizationPattern/user-list/user-list.com
     SliderComponent,
     ProductsComponent,
 
+    //Signal
+    SignalTodoComponent,
+    ListTodosComponent
+
     //Optimization
-    RhComponent,
-    UserListComponent,
+    // RhComponent,
+    // UserListComponent,
   ],
   imports: [
     BrowserModule,

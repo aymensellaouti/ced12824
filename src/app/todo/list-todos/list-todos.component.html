@@ -1,0 +1,23 @@
+<div>
+  <div class="row">
+    <div class="col">Todo Infos</div>
+
+      <div *ngFor="let todo of todos">
+        {{todo.name}} : {{todo.content}}
+        <select
+          (change)="onChangeTodo({id: todo.id, status: newStatus.value})"
+          #newStatus
+          class="form-control">
+
+            <option
+            *ngFor="let statu of status"
+            value="{{ statu }}"
+              [selected]="todo.status == statu">
+              {{ statu }}
+            </option>
+
+        </select>
+      </div>
+
+  </div>
+</div>

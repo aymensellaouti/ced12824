@@ -8,7 +8,7 @@ import { APP_ROUTES } from './config/app-routes.config';
 import { NF404Component } from './components/nf404/nf404.component';
 import { LoginComponent } from './auth/login/login.component';
 import { ProductsComponent } from './products/products.component';
-import { RhComponent } from './optimizationPattern/rh/rh.component';
+// import { RhComponent } from './optimizationPattern/rh/rh.component';
 import { CustomPreloadingStrategy } from './preloading strategies/custom.preloading-strategy';
 
 
@@ -30,7 +30,7 @@ const routes: Routes = [
       preload: true
     }
   },
-  { path: 'rh', component: RhComponent },
+  // { path: 'rh', component: RhComponent },
   { path: APP_ROUTES.login, component: LoginComponent },
   { path: 'client/dossier/:element/:id', component: SecondComponent },
   { path: '**', component: NF404Component },
