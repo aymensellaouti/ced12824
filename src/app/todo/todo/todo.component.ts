@@ -19,7 +19,7 @@ export class TodoComponent {
   todos$: Observable<Todo[]> = this.store.select(selectTodos);
   // Le formulaire d'ajout de todo
   todo = new Todo();
-
+  constructor() { this.store.dispatch(todoActionGroup.getTodos())}
   addTodo() {
     // this.todoService.addTodo(this.todo);
     this.store.dispatch(todoActionGroup.addTodo({ todo: this.todo }));
