@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -38,6 +38,9 @@ import { ProductsComponent } from './products/products.component';
 import { NgxUiLoaderModule } from 'ngx-ui-loader';
 import { SignalTodoComponent } from './todo/signal-todo/signal-todo.component';
 import { ListTodosComponent } from './todo/list-todos/list-todos.component';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { appReducer } from './store/global.reducer';
 // import { RhComponent } from './optimizationPattern/rh/rh.component';
 // import { UserListComponent } from './optimizationPattern/user-list/user-list.component';
 
@@ -52,8 +55,6 @@ import { ListTodosComponent } from './todo/list-todos/list-todos.component';
     RotatingCardComponent,
     PereComponent,
     FilsComponent,
-
-
 
     // Directives
     MiniWordComponent,
@@ -71,7 +72,7 @@ import { ListTodosComponent } from './todo/list-todos/list-todos.component';
 
     //Signal
     SignalTodoComponent,
-    ListTodosComponent
+    ListTodosComponent,
 
     //Optimization
     // RhComponent,
@@ -86,6 +87,8 @@ import { ListTodosComponent } from './todo/list-todos/list-todos.component';
     AppRoutingModule,
     ToastrModule.forRoot(), // ToastrModule added
     NgxUiLoaderModule,
+    StoreModule.forRoot({ ux: appReducer}),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
   ],
   providers: [
     authInterceptorProvider,
