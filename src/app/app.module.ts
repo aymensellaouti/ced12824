@@ -41,6 +41,7 @@ import { ListTodosComponent } from './todo/list-todos/list-todos.component';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { appReducer } from './store/global.reducer';
+import { EffectsModule } from '@ngrx/effects';
 // import { RhComponent } from './optimizationPattern/rh/rh.component';
 // import { UserListComponent } from './optimizationPattern/user-list/user-list.component';
 
@@ -89,6 +90,7 @@ import { appReducer } from './store/global.reducer';
     NgxUiLoaderModule,
     StoreModule.forRoot({ ux: appReducer}),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
+    EffectsModule.forRoot([]),
   ],
   providers: [
     authInterceptorProvider,
