@@ -26,5 +26,16 @@
         ]
       }
     }
+  ],
+  "dataGroups": [
+    {
+      "name": "cv",
+      "urls": ["https://apilb.tridevs.net/api/personnes*"],
+      "cacheConfig": {
+        "strategy": "freshness",
+        "maxAge": "1d",
+        "maxSize": 1000
+      }
+    }
   ]
 }
