@@ -6,6 +6,8 @@ import { TodoRoutingModule } from "./todo-routing.module";
 import { CommonModule } from "@angular/common";
 import { StoreModule } from "@ngrx/store";
 import { todoReducer } from "./store/todo.reducer";
+import { EffectsModule } from "@ngrx/effects";
+import { TodoEffect } from "./store/todo.effect";
 
 @NgModule({
   declarations: [TodoComponent, WeekTodosComponent],
@@ -13,7 +15,8 @@ import { todoReducer } from "./store/todo.reducer";
     CommonModule,
     FormsModule,
     TodoRoutingModule,
-    StoreModule.forFeature("todo", todoReducer)
+    StoreModule.forFeature("todo", todoReducer),
+    EffectsModule.forFeature([TodoEffect]),
   ],
   exports: [],
   providers: [],
