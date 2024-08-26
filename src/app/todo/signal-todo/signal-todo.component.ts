@@ -17,6 +17,10 @@ export class SignalTodoComponent {
   signalTodoService = inject(SignalTodoService);
   // SYNCHRONE
 
+  $waitingTodos = computed(() => this.$todos().filter( todo => todo.status === TodoStatusEnum.WAITING));
+  $inProgressTodos = computed(() => this.$todos().filter( todo => todo.status === TodoStatusEnum.IN_PROGRESS));
+  $doneTodos = computed(() => this.$todos().filter( todo => todo.status === TodoStatusEnum.DONE));
+
   constructor() {
     this.$todos = this.signalTodoService.$todos;
   }

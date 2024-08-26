@@ -9,6 +9,17 @@
     <div class="col"><button class="btn btn-danger" (click)="addTodo()">add todo</button></div>
   </div>
   <div class="row">
-
+    <div class="col alert alert-secondary">
+      <h2>Waiting</h2>
+      <app-list-todos [todos]="$waitingTodos()" (statusChanged)="updateTodo($event)"/>
+    </div>
+    <div class="col alert alert-warning">
+      <h2>In Progress</h2>
+      <app-list-todos [todos]="$inProgressTodos()" (statusChanged)="updateTodo($event)"/>
+    </div>
+    <div class="col alert alert-success">
+      <h2>Done</h2>
+      <app-list-todos [todos]="$doneTodos()" (statusChanged)="updateTodo($event)"/>
+    </div>
   </div>
 </div>

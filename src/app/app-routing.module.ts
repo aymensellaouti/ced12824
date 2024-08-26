@@ -11,6 +11,8 @@ import { ProductsComponent } from './products/products.component';
 // import { RhComponent } from './optimizationPattern/rh/rh.component';
 import { CustomPreloadingStrategy } from './preloading strategies/custom.preloading-strategy';
 import { RhComponent } from './optimizationPattern/rh/rh.component';
+import { SignalTodo } from './todo/model/signalTodo.model';
+import { SignalTodoComponent } from './todo/signal-todo/signal-todo.component';
 
 
 // /cv
@@ -22,16 +24,17 @@ const routes: Routes = [
   { path: 'products', component: ProductsComponent },
   {
     path: 'todo',
-    loadChildren: () => import('./todo/todo.module')
+    loadChildren: () => import('./todo/todo.module'),
   },
   {
     path: APP_ROUTES.cv,
     loadChildren: () => import('./cv/cv.module'),
     data: {
-      preload: true
-    }
+      preload: true,
+    },
   },
   { path: 'rh', component: RhComponent },
+  { path: 'todo/signal', component: SignalTodoComponent },
   { path: APP_ROUTES.login, component: LoginComponent },
   { path: 'client/dossier/:element/:id', component: SecondComponent },
   { path: '**', component: NF404Component },
