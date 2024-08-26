@@ -43,8 +43,13 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { appReducer } from './store/global.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { ServiceWorkerModule } from '@angular/service-worker';
-// import { RhComponent } from './optimizationPattern/rh/rh.component';
-// import { UserListComponent } from './optimizationPattern/user-list/user-list.component';
+import { OnPushComponent } from './changeDetection/on-push/on-push.component';
+import { OnPushFilsComponent } from './changeDetection/on-push-fils/on-push-fils.component';
+import { RhComponent } from './optimizationPattern/rh/rh.component';
+import { UserListComponent } from './optimizationPattern/user-list/user-list.component';
+import { UserListDetailsComponent } from './optimizationPattern/user-list-details/user-list-details.component';
+import { FiboPipe } from './optimizationPattern/pipe/fibo.pipe';
+import { FirstSignalComponent } from './signal/first-signal/first-signal.component';
 
 
 @NgModule({
@@ -75,10 +80,15 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     //Signal
     SignalTodoComponent,
     ListTodosComponent,
+    FirstSignalComponent,
 
     //Optimization
-    // RhComponent,
-    // UserListComponent,
+    RhComponent,
+    UserListComponent,
+    UserListDetailsComponent,
+    FiboPipe,
+    OnPushComponent,
+    OnPushFilsComponent,
   ],
   imports: [
     BrowserModule,
@@ -89,14 +99,14 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     AppRoutingModule,
     ToastrModule.forRoot(), // ToastrModule added
     NgxUiLoaderModule,
-    StoreModule.forRoot({ ux: appReducer}),
+    StoreModule.forRoot({ ux: appReducer }),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
     EffectsModule.forRoot([]),
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: !isDevMode(),
       // Register the ServiceWorker as soon as the application is stable
       // or after 30 seconds (whichever comes first).
-      registrationStrategy: 'registerWhenStable:30000'
+      registrationStrategy: 'registerWhenStable:30000',
     }),
   ],
   providers: [

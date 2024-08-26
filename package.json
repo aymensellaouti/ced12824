@@ -6,7 +6,9 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "explorer": "source-map-explorer dist/**/*.js",
+    "explorer:main": "source-map-explorer dist/**/main*.js"
   },
   "private": true,
   "dependencies": {
@@ -27,6 +29,7 @@
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",
     "chart.js": "^4.0.1",
+    "memo-decorator": "^2.0.1",
     "ngx-toastr": "^19.0.0",
     "ngx-ui-loader": "^13.0.0",
     "plotly.js-dist-min": "^2.6.2",
@@ -46,6 +49,7 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
+    "source-map-explorer": "^2.5.3",
     "typescript": "~5.1.3"
   }
 }
