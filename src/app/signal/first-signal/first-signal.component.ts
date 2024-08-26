@@ -6,13 +6,13 @@ import { Component, computed, signal, WritableSignal } from '@angular/core';
   styleUrls: ['./first-signal.component.css'],
 })
 export class FirstSignalComponent {
-  x = 5;
-  y = 7;
-  z = this.x + this.y;
 
-  increment(element: number) {
-    console.log('click');
+  x = signal(5);
+  y = signal(7);
+  z = computed(() => this.x() + this.y());
 
-    element = element + 1;
+  inrement(mySignal: WritableSignal<number>) {
+    mySignal.update( oldValue => oldValue + 1);
   }
+
 }
